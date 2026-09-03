@@ -1,0 +1,56 @@
+name: Todo Web CI
+
+on:
+  push:
+    branches:
+      - '*'
+
+  pull_request:
+    branches:
+      - '*'
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install the Node.js version used by the project.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # Install exact dependency versions from package-lock.json.
+      - name: Install dependencies
+        run: npm ci
+
+      # Check ESLint rules.
+      - name: Lint
+        run: npm run lint
+
+      # Ensure files are formatted correctly.
+      - name: Check formatting
+        run: npm run format:check
+
+      # Validate TypeScript.
+      - name: Type check
+        run: npm run typecheck
+
+      # Execute automated tests.
+      - name: Test
+        run: npm test
+
+      # Verify production build.
+      - name: Build
+        run: npm run build
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
