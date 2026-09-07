@@ -11,11 +11,3 @@ export async function getTodos() {
 
   return response.data;
 }
-
-export async function createTodo(title: string) {
-  const response = await apiClient.post<Todo>('/todos', {
-    title,
-  });
-
-  return response.data;
-}
