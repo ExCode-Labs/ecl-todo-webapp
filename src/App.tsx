@@ -9,7 +9,7 @@ function App() {
   }, []);
   return (
     <>
-      <h1>Welcome</h1>
+      <h1 className="bg-violet-500">It's TailwindCSS working</h1>
     </>
   );
 }
