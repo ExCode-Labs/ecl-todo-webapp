@@ -11,11 +11,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="h-screen overflow-x-hidden">
       <Navbar />
-
       <Routes />
-    </>
+    </div>
   );
 }
 
