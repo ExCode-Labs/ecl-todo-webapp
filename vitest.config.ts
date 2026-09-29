@@ -8,6 +8,12 @@ export default defineConfig({
     // React components need a browser-like environment.
     environment: 'jsdom',
 
+    server: {
+      deps: {
+        inline: ['@excodelabs/ui'],
+      },
+    },
+
     // Load test setup before every test file.
     setupFiles: ['./tests/setup.ts'],
 

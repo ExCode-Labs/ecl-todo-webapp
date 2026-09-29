@@ -4,13 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import App from '../src/App';
 
 describe('App', () => {
-  it('should display the welcome message', () => {
+  it('should display the Your Task message', () => {
     render(
       <BrowserRouter>
         <App />
       </BrowserRouter>,
     );
 
-    expect(screen.getByRole('heading', { name: 'Welcome' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Your Tasks.' })).toBeInTheDocument();
   });
 });
